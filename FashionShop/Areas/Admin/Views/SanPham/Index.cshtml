@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SanPhamModel>
+@{
+    ViewData["title"] = "Danh sách sản phẩm";
+}
+<h3>Quản lý sản phẩm</h3>
+<a  asp-action="Create" class="btn btn-warning btn-sm" asp-controller="SanPham">Thêm</a>
+<table class="table table-dark table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tên sản phẩm</th>
+            <th scope="col">Thông tin</th>
+            <th scope="col">Giá</th>
+            <th scope="col">Ảnh</th>
+            <th scope="col">Chi tiết</th>
+            <th scope="col">Danh mục</th>
+            <th scope="col">Thương hiệu</th>
+            <th scope="col">Quản lý sản phẩm</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Price</td>
+                <td><img src="~/Picture/sanPham/@item.Image" width="120" /></td>
+                <td>@item.Slug</td>
+                <td>@item.DanhMuc.Name</td>
+                <td>@item.ThuongHieu.Name</td>
+                <td>
+                    <a asp-action="Edit" class="btn btn-warning btn-sm" asp-controller="SanPham" asp-route-Id="@item.Id">Sửa</a>
+                    <a asp-action="Delete" class="btn btn-warning btn-sm" asp-controller="SanPham" asp-route-Id="@item.Id">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
